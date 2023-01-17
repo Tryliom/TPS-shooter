@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,18 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(_lifeTime);
         Destroy(gameObject);
     }
-    
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Projectile")) return;
+        
+        if (other.gameObject.CompareTag("Target"))
+        {
+            var target = other.gameObject;
+            target.GetComponent<TargetController>().Toggle(false);
+            Destroy(target);
+        }
+        
         Destroy(gameObject);
     }
 }
