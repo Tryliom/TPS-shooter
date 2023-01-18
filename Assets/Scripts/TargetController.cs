@@ -8,9 +8,8 @@ public class TargetController : MonoBehaviour
     private bool _enabled = true;
     
     private CapsuleCollider _capsuleCollider;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public void Initialize()
     {
         _capsuleCollider = GetComponent<CapsuleCollider>();
     }

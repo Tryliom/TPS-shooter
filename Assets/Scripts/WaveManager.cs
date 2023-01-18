@@ -14,16 +14,14 @@ public class WaveManager : MonoBehaviour
     private UiController _uiController;
 
     // Start is called before the first frame update
-    IEnumerator Start()
+    private void Start()
     {
         _boxCollider = GetComponent<BoxCollider>();
         _uiController = player.GetComponent<UiController>();
         
-        yield return new WaitForSeconds(0.5f);
-        
         for (var i = 0; i < transform.childCount; i++)
         {
-            var wave = transform.GetChild(i).gameObject;
+            var wave = transform.GetChild(i);
             _waveControllers.Add(wave.GetComponent<WaveController>());
         }
         

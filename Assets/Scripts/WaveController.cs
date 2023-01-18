@@ -6,17 +6,17 @@ public class WaveController : MonoBehaviour
 {
     private List<TargetController> _targets = new List<TargetController>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         for (var i = 0; i < transform.childCount; i++)
         {
+            transform.GetChild(i).GetComponent<TargetController>().Initialize();
             _targets.Add(transform.GetChild(i).GetComponent<TargetController>());
             
             _targets[i].Toggle(false);
         }
     }
-    
+
     public void StartWave()
     {
         for (var i = 0; i < _targets.Count; i++)
