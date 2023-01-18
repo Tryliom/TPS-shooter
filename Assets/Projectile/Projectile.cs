@@ -33,7 +33,6 @@ public class Projectile : MonoBehaviour
         {
             var target = other.gameObject;
             target.GetComponent<TargetController>().Toggle(false);
-            Destroy(target);
         }
         
         Destroy(gameObject);

@@ -7,21 +7,34 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _aimCamera;
+    [SerializeField] private CinemachineVirtualCamera _fireCamera;
     
     private StarterAssetsInputs _inputs;
-    private CinemachineBasicMultiChannelPerlin _noise;
     
     // Start is called before the first frame update
     void Start()
     {
         _inputs = GetComponent<StarterAssetsInputs>();
-        _noise = _aimCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Update is called once per frame
     void Update()
     {
         _aimCamera.enabled = _inputs.aim;
-        _noise.m_AmplitudeGain = _inputs.fire ? 0.5f : 0f;
+        
+        if (_inputs.aim)
+        {
+            _fireCamera.enabled = _inputs.fire;
+        }
+
+        if (_fireCamera.enabled)
+        {
+            _aimCamera.enabled = false;
+        }
+    }
+    
+    public void ToggleFireCamera(bool toggle)
+    {
+        _fireCamera.enabled = toggle;
     }
 }

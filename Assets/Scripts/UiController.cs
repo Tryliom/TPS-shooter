@@ -8,16 +8,23 @@ public class UiController : MonoBehaviour
 {
     [SerializeField] private GameObject _aimPanel;
     [SerializeField] private GameObject _wavePanel;
-    
-    private TextMeshPro _waveText;
-    
+    [SerializeField] private GameObject _waveText;
+    [SerializeField] private GameObject _waveCountdownText;
+    [SerializeField] private GameObject _scoreText;
+
     private StarterAssetsInputs _inputs;
+    private TMP_Text _waveTextMesh;
+    private TMP_Text _waveCountdownTextMesh;
+    private TMP_Text _scoreTextMesh;
     
     // Start is called before the first frame update
     void Start()
     {
         _inputs = GetComponent<StarterAssetsInputs>();
-        //_waveText = _wavePanel.GetComponentInChildren<TextMeshPro>();
+        
+        _waveTextMesh = _waveText.GetComponent<TMP_Text>();
+        _waveCountdownTextMesh = _waveCountdownText.GetComponent<TMP_Text>();
+        _scoreTextMesh = _scoreText.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -33,6 +40,16 @@ public class UiController : MonoBehaviour
     
     public void SetWaveNumber(int number)
     {
-        //_waveText.text = "Wave " + number;
+        _waveTextMesh.text = $"Wave {number}";
+    }
+    
+    public void SetWaveCountdown(string time)
+    {
+        _waveCountdownTextMesh.text = $"Next wave in {time}";
+    }
+    
+    public void SetScore(int targetDestroyed, int targetTotal)
+    {
+        _scoreTextMesh.text = $"{targetDestroyed}/{targetTotal} targets";
     }
 }

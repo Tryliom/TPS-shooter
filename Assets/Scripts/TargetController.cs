@@ -11,6 +11,7 @@ public class TargetController : MonoBehaviour
     
     public void Initialize()
     {
+        Debug.Log("TargetController.Initialize");
         _capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
