@@ -15,6 +15,9 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         _inputs = GetComponent<StarterAssetsInputs>();
+        
+        _aimCamera.enabled = false;
+        _fireCamera.enabled = false;
     }
 
     // Update is called once per frame

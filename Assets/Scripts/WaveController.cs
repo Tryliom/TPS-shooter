@@ -8,8 +8,6 @@ public class WaveController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("WaveController Awake");
-        
         for (var i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<TargetController>().Initialize();
@@ -17,8 +15,6 @@ public class WaveController : MonoBehaviour
             
             _targets[i].Toggle(false);
         }
-        
-        Debug.Log("WaveController Awake finished");
     }
 
     public void StartWave()
