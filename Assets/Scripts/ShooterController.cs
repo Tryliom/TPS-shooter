@@ -13,6 +13,8 @@ public class ShooterController : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _lightningObject;
     [SerializeField] private GameObject _hitEffect;
+    [SerializeField] private AudioClip _shootingSound;
+    [SerializeField] private List<AudioClip> _hitSounds;
 
     private bool _canShoot = true;
     
@@ -45,7 +47,7 @@ public class ShooterController : MonoBehaviour
             targetPosition = hit.point;
         }
         
-        _targetPoint.position = Vector3.Lerp(_targetPoint.position, targetPosition, 0.05f);
+        _targetPoint.position = targetPosition;
         
         _lightningBoltScript.StartPosition = _shootingOrigin.position;
         _lightningBoltScript.EndPosition = _targetPoint.position;
@@ -74,11 +76,14 @@ public class ShooterController : MonoBehaviour
         _lightningBoltScript.Trigger();
         var gameObject = Instantiate(_hitEffect, _targetPoint.position, Quaternion.identity);
         gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+        AudioSource.PlayClipAtPoint(_shootingSound, _shootingOrigin.position, 0.25f);
     }
     
-    private static IEnumerator HitTarget(TargetController targetController)
+    private IEnumerator HitTarget(TargetController targetController)
     {
         yield return new WaitForSeconds(0.1f);
+        
         targetController.Toggle(false);
+        AudioSource.PlayClipAtPoint(_hitSounds[Random.Range(0, _hitSounds.Count)], _player.transform.position, 1.5f);
     }
 }

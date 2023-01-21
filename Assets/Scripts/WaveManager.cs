@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private AudioClip _nextWaveSound;
 
     private readonly List<WaveController> _waveControllers = new List<WaveController>();
     private int _currentWave = -1;
@@ -50,6 +51,8 @@ public class WaveManager : MonoBehaviour
 
             if (_currentWave > -1 && _waveControllers[_currentWave].IsFinished() || _timeBeforeNextWave <= 0)
             {
+                AudioSource.PlayClipAtPoint(_nextWaveSound, player.transform.position);
+                
                 if (_currentWave > -1)
                 {
                     _totalTargetDestroyed += _waveControllers[_currentWave].GetDestroyedTargets();

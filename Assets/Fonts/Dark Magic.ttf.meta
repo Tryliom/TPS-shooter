@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 515325473c74c734fa71e7d55d4cdaf2
+guid: f4fe6858da489424eb7281ee7a1f70ba
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - pixelmix
+  - Dark Magic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
